@@ -34,6 +34,8 @@ import UIKit
     /// Called when custom actions are called by callbacks in the JS
     /// By default, this method is not used unless called by some custom JS that you add
     @objc optional func richEditor(_ editor: RichEditorView, handle action: String)
+    
+    func richEditor(_ editor: RichEditorView, didScroll scrollView: UIScrollView)
 }
 
 /// RichEditorView is a UIView that displays richly styled text, and allows it to be edited in a WYSIWYG fashion.
@@ -341,6 +343,7 @@ open class RichEditorView: UIView, UIScrollViewDelegate, UIWebViewDelegate, UIGe
         if !isScrollEnabled {
             scrollView.bounds = webView.bounds
         }
+        delegate?.richEditor(self, didScroll: webView.scrollView)
     }
 
 
